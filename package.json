@@ -1,0 +1,23 @@
+{
+  "name": "collab-board",
+  "version": "1.0.0",
+  "description": "A collaborative write board app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Collaborative_Board",
+    "CollabWriter"
+  ],
+  "author": "Syed Samad Ali",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "save": "^2.9.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
