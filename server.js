@@ -56,14 +56,14 @@ io.on('connection', (socket) => {
     
     // Handle the drawing event
     socket.on('drawing', (data) => {
-        // Broadcast the drawing data (including x, y, color, and strokeWidth) to all other connected clients
+        // Broadcast the drawing data to all other connected clients
         socket.broadcast.emit('drawing', data);
     });
 
-    // Handle the clear canvas event for a specific user
+    // Handle the clear canvas event
     socket.on('clearCanvas', () => {
-        // Emit the clear canvas event only to the client that triggered it
-        socket.emit('clearCanvas');
+        // Broadcast the clear canvas event to all connected clients
+        io.emit('clearCanvas');
     });
 
     // Handle the disconnect event

@@ -139,23 +139,16 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const colorPicker = document.getElementById('colorPicker');
-const clearButton = document.getElementById('clearButton');
 const strokeWidthSlider = document.getElementById('strokeWidth');
-const strokeWidthValue = document.getElementById('strokeWidthValue');
+const clearButton = document.getElementById('clearButton');
 
 canvas.width = window.innerWidth * 0.8;
 canvas.height = window.innerHeight * 0.8;
 
 let drawing = false;
 let currentColor = 'red'; // Default color
-let currentStrokeWidth = strokeWidthSlider.value; // Default stroke width
+let currentStrokeWidth = 5; // Default stroke width
 const socket = io();
-
-// Update the stroke width display when the slider is changed
-strokeWidthSlider.addEventListener('input', (e) => {
-    currentStrokeWidth = e.target.value;
-    strokeWidthValue.textContent = currentStrokeWidth;
-});
 
 canvas.addEventListener('mousedown', () => {
     drawing = true;
@@ -182,7 +175,7 @@ canvas.addEventListener('mousemove', (e) => {
     ctx.beginPath();
     ctx.moveTo(x, y);
 
-    // Emit the drawing data (x, y, color, and strokeWidth) to the backend server
+    // Emit the drawing data to the backend server
     socket.emit('drawing', { x, y, color: currentColor, strokeWidth: currentStrokeWidth });
 });
 
@@ -215,4 +208,9 @@ clearButton.addEventListener('click', () => {
 // Change the color of the drawing based on the color picker
 colorPicker.addEventListener('input', (e) => {
     currentColor = e.target.value;
+});
+
+// Update the stroke width based on the slider
+strokeWidthSlider.addEventListener('input', (e) => {
+    currentStrokeWidth = e.target.value;
 });
